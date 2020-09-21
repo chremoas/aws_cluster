@@ -31,6 +31,9 @@ module "chremoas_db" {
     timeout_action = "RollbackCapacityChange"
   }
 
+  preferred_backup_window = "05:01-05:31"
+  preferred_maintenance_window = "wed:07:22-wed:07:52"
+
   copy_tags_to_snapshot = true
 
   tags                            = {
