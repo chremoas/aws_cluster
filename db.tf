@@ -5,7 +5,8 @@ module "chremoas_db" {
 
   engine                          = "aurora-postgresql"
   engine_mode                     = "serverless"
-  engine_version                  = "11.8"
+  engine_version                  = "10.7"
+  username                        = "postgres"
 
   replica_scale_enabled           = false
   replica_count                   = 0
@@ -20,7 +21,17 @@ module "chremoas_db" {
   monitoring_interval             = 10
 
   db_parameter_group_name         = "default"
-  db_cluster_parameter_group_name = "default"
+  db_cluster_parameter_group_name = "default.aurora-postgresql10"
+
+  scaling_configuration = {
+    auto_pause = false
+    max_capacity = 2
+    min_capacity = 2
+    seconds_until_auto_pause = 300
+    timeout_action = "RollbackCapacityChange"
+  }
+
+  copy_tags_to_snapshot = true
 
   tags                            = {
     Application = "chremoas"
