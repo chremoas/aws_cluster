@@ -39,7 +39,8 @@ module "chremoas_db_sg" {
   ingress_with_cidr_blocks = [
     {
       rule        = "postgresql-tcp"
-      cidr_blocks = module.primary.public_subnets_cidr_blocks
-    },
+      #cidr_blocks = module.primary.public_subnets_cidr_blocks
+      cidr_blocks = "10.0.0.0/16"
+    }
   ]
 }
