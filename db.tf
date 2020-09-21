@@ -1,4 +1,4 @@
-module "db" {
+module "chremoas_db" {
   source                          = "terraform-aws-modules/rds-aurora/aws"
 
   name                            = "chremoas-db"
@@ -13,7 +13,7 @@ module "db" {
   vpc_id                          = module.primary.vpc_id
   subnets                         = module.primary.private_subnets
 
-  allowed_security_groups         = ["sg-12345678"]
+  allowed_security_groups         = module.chremoas_db_sg.this_security_group_id
   instance_type                   = "db.t3.medium"
   storage_encrypted               = true
   apply_immediately               = true
@@ -27,4 +27,19 @@ module "db" {
     Environment = "aba"
     Terraform   = "true"
   }
+}
+
+module "chremoas_db_sg" {
+  source = "terraform-aws-modules/security-group/aws"
+
+  name        = "chremoas_db_sg"
+  description = "Security group to allow pgsql connections for chremoas"
+  vpc_id      = module.primary.vgw_id
+
+  ingress_with_cidr_blocks = [
+    {
+      rule        = "postgresql-tcp"
+      cidr_blocks = module.primary.public_subnets_cidr_blocks
+    },
+  ]
 }
