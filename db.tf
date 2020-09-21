@@ -13,7 +13,7 @@ module "chremoas_db" {
   vpc_id                          = module.primary.vpc_id
   subnets                         = module.primary.private_subnets
 
-  allowed_security_groups         = module.chremoas_db_sg.this_security_group_id
+  allowed_security_groups         = [module.chremoas_db_sg.this_security_group_id]
   instance_type                   = "db.t3.medium"
   storage_encrypted               = true
   apply_immediately               = true
