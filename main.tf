@@ -9,5 +9,13 @@ terraform {
       version = "~> 3.7"
     }
   }
+
+  backend "remote" {
+    organization = "4amlunch-home"
+
+    workspaces {
+      name = "chremoas_aws_cluster"
+    }
+  }
 }
 
