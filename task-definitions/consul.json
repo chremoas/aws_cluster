@@ -1,0 +1,13 @@
+[
+  {
+    "name": "chremoas-consul",
+    "image": "consul",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8500,
+        "hostPort": 8500
+      }
+    ]
+  }
+]
