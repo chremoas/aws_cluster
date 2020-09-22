@@ -12,7 +12,8 @@ module "ecs_arm_cluster" {
 
   cluster_name = "ARM_services"
 //  cluster_instance_ssh_public_key_path = "~/.ssh/ew_rsa.pub"
-  cluster_instance_type = var.ecs_arm_cluster_instance_type
+  //cluster_instance_type = var.ecs_arm_cluster_instance_type
+  cluster_instance_type = "t3.micro"
 
   cluster_minimum_size = 1
   cluster_maximum_size = 4

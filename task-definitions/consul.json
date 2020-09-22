@@ -3,6 +3,7 @@
     "name": "chremoas-consul",
     "image": "consul",
     "essential": true,
+    "memory": 128,
     "portMappings": [
       {
         "containerPort": 8500,
