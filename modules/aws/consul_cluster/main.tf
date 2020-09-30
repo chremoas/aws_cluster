@@ -66,9 +66,9 @@ data template_file "cloud_init" {
   template = file("${path.module}/files/cloud-init.yaml")
 
   vars = {
-    consul_config = data.template_file.consul_config.rendered
-    dnsmasq = file("${path.module}/files/dnsmasq-consul.conf")
-    consul_systemd = file("${path.module}/files/consul-server.service")
+    consul_config = jsonencode(data.template_file.consul_config.rendered)
+    dnsmasq = jsonencode(file("${path.module}/files/dnsmasq-consul.conf"))
+    consul_systemd = jsonencode(file("${path.module}/files/consul-server.service"))
   }
 }
 
