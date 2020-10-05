@@ -1,0 +1,63 @@
+{
+  "variables": {
+    "aws_region": "{{env `AWS_REGION`}}",
+    "aws_ami_name": "consul-cluster-{{timestamp}}"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "{{user `aws_region`}}",
+    "subnet_id": "subnet-860173db",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "insight-base-amazonlinux-ami-*",
+        "root-device-type": "ebs"
+      },
+      "owners": ["358930752505"],
+      "most_recent": true
+    },
+    "instance_type": "m5.large",
+    "iam_instance_profile": "insight-email",
+    "ssh_username": "ec2-user",
+    "ami_name": "{{user `aws_ami_name`}}",
+    "ami_description": "Insight SMTP Relay Nodes built {{timestamp}}",
+    "tags": {
+      "Application": "insight",
+      "Name": "insight-smtp-relay",
+      "SourceAMI": "{{ .SourceAMI }}"
+    },
+    "run_tags": {
+      "CloudreachSupport": "ignore",
+      "Runner": "Packer Deployment"
+    }
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo mkdir -p /data/insight-smtp-relay",
+        "sudo chown ec2-user:ec2-user /data/insight-smtp-relay",
+        "sudo chmod -R 770 /data/insight-smtp-relay"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "./",
+      "destination": "/data/insight-smtp-relay"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "set -xe",
+        "sudo /data/insight-smtp-relay/build/install-sumologic.sh /data/insight-smtp-relay/build",
+        "cd /data/insight-smtp-relay/build",
+        "sudo yum install postfix -y",
+        "sudo yum remove sendmail -y",
+        "sudo aws s3 cp s3://insight-smtp-relay/incoming/sasl_passwd /tmp/incoming/",
+        "sudo aws s3 cp s3://insight-smtp-relay/outgoing/sasl_passwd /tmp/outgoing/",
+        "chmod +x incoming_config.sh",
+        "chmod +x outgoing_config.sh"
+      ]
+    }
+  ]
+}

@@ -9,23 +9,24 @@ groups:
   - consul
 
 users:
+  - default
   - name: consul
     primary_group: consul
     system: true
 
 write_files:
-  - content: ${consul_config}
+  - content: |
+      ${consul_config}
     path: /opt/consul/config/server.hcl
-    encoding: b64
     permissions: '0644'
     owner: consul:consul
-  - content: ${dnsmasq}
+  - content: |
+      ${dnsmasq}
     path: /etc/dnsmasq.d/consul
-    encoding: b64
     permissions: '0644'
     owner: root:root
-  - content: ${consul_systemd}
+  - content: |
+      ${consul_systemd}
     path: /etc/systemd/system/consul.service
-    encoding: b64
     permissions: '0644'
     owner: root:root

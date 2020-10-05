@@ -2,21 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e4f1ef3-cab2-4ff6-8471-59990fc92d8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/consul.tf" beforeDir="false" afterPath="$PROJECT_DIR$/consul.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/ecs.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-definitions/consul.json" beforeDir="false" afterPath="$PROJECT_DIR$/task-definitions/consul.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packer/consul-ami.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packer/consul-ami.pkr.hcl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packer/variables.pkr.hcl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/consul-server.service" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/consul_config.hcl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/dnsmasq-consul.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws_cluster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws_cluster.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alb.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/alb.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bastion.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/bastion.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buckets.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/buckets.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consul.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/consul.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/db.tf.off" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecs.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/ecs.tf.off" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/consul_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/files/consul_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/iam.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/images.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/main.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/cloud-init.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/cloud-init.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/consul-server.service" beforeDir="false" afterPath="$PROJECT_DIR$/packer/files/consul-server.service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/consul_config.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/packer/files/consul_config.hcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/dnsmasq-consul.conf" beforeDir="false" afterPath="$PROJECT_DIR$/packer/files/dnsmasq-consul.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/install_consul.sh" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/install_consul.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/main.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/outputs.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/variables.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/network.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/outputs.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/redis.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/redis.tf.off" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/variables.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="GOROOT" path="$USER_HOME$/go/go1.13.3" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="6de0b741-25ed-44e7-9550-7ee77690c95c" />
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="lke7254-ctx" />
+    <option name="namespace" value="default" />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="2eqkxpo4" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1hsHdh7JVyGfZCgbw5Kxa7MmZZi" />
   <component name="ProjectViewState">
@@ -28,9 +70,11 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packer/files" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,8 +82,51 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packer/files" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/terraform" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e4f1ef3-cab2-4ff6-8471-59990fc92d8b" name="Default Changelist" comment="" />
+      <created>1601561305083</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601561305083</updated>
+      <workItem from="1601561308216" duration="776000" />
+      <workItem from="1601563102288" duration="3551000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3842" y="31" width="917" height="1086" key="dock-window-1" timestamp="1601565796176">
+      <screen x="2560" y="0" width="2560" height="1410" />
+    </state>
+    <state x="3842" y="31" width="917" height="1086" key="dock-window-1/2560.0.2560.1410/0.0.2560.1410@2560.0.2560.1410" timestamp="1601565796176" />
+    <state x="3841" y="31" width="1278" height="1378" key="dock-window-2" timestamp="1601565796177">
+      <screen x="2560" y="0" width="2560" height="1410" />
+    </state>
+    <state x="3841" y="31" width="1278" height="1378" key="dock-window-2/2560.0.2560.1410/0.0.2560.1410@2560.0.2560.1410" timestamp="1601565796177" />
   </component>
 </project>

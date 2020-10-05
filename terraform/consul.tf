@@ -3,7 +3,7 @@ module "consul_shared" {
   cluster_name = "consul-shared"
   vpc_id = module.primary.vpc_id
   ssh_key_name = "aws_cluster"
-  ami = data.aws_ami.AmazonLinux2-arm64.image_id
+  architecture = "arm64"
   ssh_allowed_cidrs = ["75.52.174.32/29", "10.0.0.0/16"]
   consul_allowed_cidrs = ["75.52.174.32/29", "10.0.0.0/16"]
   consul_version = "1.8.4"

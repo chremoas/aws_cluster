@@ -1,5 +1,9 @@
-variable "ami" {
+variable "architecture" {
   type = string
+  validation {
+    condition = var.architecture == "amd64" || var.architecture == "arm64"
+    error_message = "Valid architectures are \"amd64\" and \"arm64\"."
+  }
 }
 
 variable "vpc_id" {
