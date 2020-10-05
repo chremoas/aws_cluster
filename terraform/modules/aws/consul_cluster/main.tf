@@ -86,7 +86,7 @@ module "ssh_sg" {
 }
 
 module "consul_sg" {
-  source = "terraform-aws-modules/security-group/aws//modules/ssh"
+  source = "terraform-aws-modules/security-group/aws//modules/consul"
 
   name        = "${var.cluster_name}-consul-ports"
   description = "Security group for consul servers with Consul ports"
