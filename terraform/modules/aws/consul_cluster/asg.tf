@@ -2,7 +2,7 @@ module "consul_cluster" {
   source = "terraform-aws-modules/autoscaling/aws"
   version = "~> 3.0"
 
-  name = "example-with-ec2"
+  name = var.cluster_name
 
   # Launch configuration
   #
@@ -42,11 +42,6 @@ module "consul_cluster" {
   service_linked_role_arn = aws_iam_service_linked_role.autoscaling.arn
 
   tags = [
-    {
-      key = "Name"
-      value = var.cluster_name
-      propagate_at_launch = true
-    },
     {
       key = "Environment"
       value = "shared"
