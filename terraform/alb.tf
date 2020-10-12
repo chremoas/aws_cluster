@@ -8,45 +8,51 @@
 //  consul_url           = "${local.consul_url_protocol}://${local.consul_url_hostname}"
 //}
 //
-//resource "aws_alb" "consul" {
-//  name_prefix     = "consul"
-//  security_groups = [aws_security_group.alb-web-sg.id]
-//  internal        = false
-//  subnets         = module.primary.public_subnets
-//
-//  tags = {
-//    Environment = var.env
-//    VPC         = data.aws_vpc.vpc.tags["Name"]
+resource "aws_alb" "arm_cluster" {
+  name = "shared"
+  internal        = false
+  subnets         = module.primary.public_subnets
+  load_balancer_type = "network"
+
+  tags = {
+    Application = "arm_cluster"
+    Environment = "shared"
+    Terraform = "true"
+  }
+
+//  access_logs {
+//    enabled = var.lb_logs_enabled
+//    bucket = var.alb_log_bucket
+//    prefix = "logs/elb/${data.aws_vpc.vpc.tags["Name"]}/consul"
 //  }
-//
-////  access_logs {
-////    enabled = var.lb_logs_enabled
-////    bucket = var.alb_log_bucket
-////    prefix = "logs/elb/${data.aws_vpc.vpc.tags["Name"]}/consul"
-////  }
-//}
-//
-//# DNS Alias for the LB
-//resource "aws_route53_record" "consul" {
-//  count   = local.enable_custom_domain ? 1 : 0
-//  zone_id = data.aws_route53_zone.zone[0].zone_id
-//  name    = local.custom_endpoint
-//  type    = "A"
-//
-//  alias {
-//    name                   = aws_alb.consul.dns_name
-//    zone_id                = aws_alb.consul.zone_id
-//    evaluate_target_health = false
-//  }
-//}
-//
+}
+
+resource "aws_autoscaling_attachment" "quassel" {
+  autoscaling_group_name = module.ecs_arm_cluster.autoscaling_group_name
+  alb_target_group_arn = aws_alb_target_group.quassel.arn
+}
+
+# DNS Alias for the LB
+resource "aws_route53_record" "quassel" {
+  zone_id = aws_route53_zone.fouramlunch_net.zone_id
+  name    = "quassel.aws.4amlunch.net"
+  type    = "A"
+
+  alias {
+    name                   = aws_alb.arm_cluster.dns_name
+    zone_id                = aws_alb.arm_cluster.zone_id
+    evaluate_target_health = false
+  }
+}
+
 //# Create a new target group
-//resource "aws_alb_target_group" "consul_ui" {
-//  port                 = 4180
-//  protocol             = "HTTP"
-//  vpc_id               = data.aws_vpc.vpc.id
+resource "aws_alb_target_group" "quassel" {
+  name = "quassel"
+  port                 = 4242
+  protocol             = "TCP"
+  vpc_id               = module.primary.vpc_id
 //  deregistration_delay = var.lb_deregistration_delay
-//
+
 //  health_check {
 //    path    = "/ping"
 //    matcher = "200"
@@ -56,28 +62,26 @@
 //    type    = "lb_cookie"
 //    enabled = true
 //  }
+
+  tags = {
+    Application = "arm_cluster"
+    Environment = "shared"
+    Terraform = "true"
+  }
+}
 //
-//  tags = {
-//    Environment = var.env
-//    VPC         = data.aws_vpc.vpc.tags["Name"]
-//  }
-//}
-//
-//# Create a new alb listener
-//resource "aws_alb_listener" "consul_https" {
-//  count             = local.enable_custom_domain ? 1 : 0
-//  load_balancer_arn = aws_alb.consul.arn
-//  port              = "443"
-//  protocol          = "HTTPS"
-//  ssl_policy        = "ELBSecurityPolicy-2016-08"
-//  certificate_arn   = data.aws_acm_certificate.cert[0].arn
-//
-//  default_action {
-//    target_group_arn = aws_alb_target_group.consul_ui.arn
-//    type             = "forward"
-//  }
-//}
-//
+# Create a new alb listener
+resource "aws_alb_listener" "quassel" {
+  load_balancer_arn = aws_alb.arm_cluster.arn
+  port              = "4242"
+  protocol          = "TCP"
+
+  default_action {
+    target_group_arn = aws_alb_target_group.quassel.arn
+    type             = "forward"
+  }
+}
+
 //resource "aws_alb_listener" "consul_http" {
 //  count             = local.enable_custom_domain ? 0 : 1
 //  load_balancer_arn = aws_alb.consul.arn

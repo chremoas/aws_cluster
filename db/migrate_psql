@@ -1,0 +1,3 @@
+cockroach dump chremoas-aba authentication_scopes users alliances corporations characters authentication_codes user_character_map authentication_scope_character_map --insecure --host cockroachdb0 --dump-mode=data > backup.sql
+cockroach dump chremoas-aba --insecure --host cockroachdb0 --dump-mode=schema > schema.sql
+psql -h localhost -U shared -f backup.sql

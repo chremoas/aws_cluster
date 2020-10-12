@@ -77,3 +77,38 @@
 //  role       = aws_iam_role.ecsServiceRole.name
 //  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
 //}
+resource "aws_iam_role_policy" "consul_client_autodiscovery" {
+  policy = data.aws_iam_policy_document.consul_client_autodiscovery.json
+  role = aws_iam_role.consul_client_autodiscovery.id
+}
+
+data "aws_iam_policy_document" "consul_client_autodiscovery" {
+  statement {
+    effect = "Allow"
+    actions = ["ec2:DescribeInstance*"]
+    resources = ["*"]
+  }
+}
+
+data "aws_iam_policy_document" "consul_client_assume_role" {
+  statement {
+    effect = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      identifiers = ["ecs-tasks.amazonaws.com"]
+      type = "Service"
+    }
+  }
+}
+
+resource "aws_iam_role" "consul_client_autodiscovery" {
+  name = "consul-client-autodiscovery"
+  assume_role_policy = data.aws_iam_policy_document.consul_client_assume_role.json
+
+  tags = {
+    Name = "consul-client-autodiscovery"
+    Application = "consul"
+    Terraform = "true"
+    Environment = "shared"
+  }
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "traefik",
+    "image": "traefik:latest",
+    "cpu": 0,
+    "memory": 32,
+    "essential": true,
+    "command": [
+      "traefik",
+      "--api",
+      "--providers.ecs.clusters=${ecs_cluster}",
+      "--providers.ecs.region=${aws_region}"
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${awslogs_group}",
+        "awslogs-region": "${awslogs_region}",
+        "awslogs-stream-prefix": "${awslogs_stream_prefix}"
+      }
+    }
+  }
+]

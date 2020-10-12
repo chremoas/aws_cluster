@@ -2,37 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e4f1ef3-cab2-4ff6-8471-59990fc92d8b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/packer/consul-ami.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packer/consul-ami.pkr.hcl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packer/variables.pkr.hcl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/consul-server.service" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/consul_config.hcl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/dnsmasq-consul.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws_cluster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws_cluster.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/create_database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate_psql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/terraform/files/consul-client.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alb.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/alb.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bastion.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/bastion.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buckets.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/buckets.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consul.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/consul.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/db.tf.off" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecs.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/ecs.tf.off" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/consul_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/files/consul_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/iam.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/images.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/cloud-init.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/cloud-init.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/consul-server.service" beforeDir="false" afterPath="$PROJECT_DIR$/packer/files/consul-server.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/consul_config.hcl" beforeDir="false" afterPath="$PROJECT_DIR$/packer/files/consul_config.hcl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/dnsmasq-consul.conf" beforeDir="false" afterPath="$PROJECT_DIR$/packer/files/dnsmasq-consul.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/files/install_consul.sh" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/files/install_consul.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/main.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/outputs.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/aws/consul_cluster/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/variables.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/network.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/outputs.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/redis.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/redis.tf.off" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/variables.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/consul.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/consul.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/db.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/db.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/ecs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/ecs.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/iam.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/iam.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/modules/aws/consul_cluster/outputs.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/outputs.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/redis.tf.off" beforeDir="false" afterPath="$PROJECT_DIR$/terraform/redis.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,19 +70,6 @@
       <recent name="$PROJECT_DIR$/terraform" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -113,6 +80,9 @@
       <updated>1601561305083</updated>
       <workItem from="1601561308216" duration="776000" />
       <workItem from="1601563102288" duration="3551000" />
+      <workItem from="1602266759535" duration="10000" />
+      <workItem from="1602267199207" duration="45000" />
+      <workItem from="1602267263742" duration="430000" />
     </task>
     <servers />
   </component>

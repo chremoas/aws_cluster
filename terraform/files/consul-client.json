@@ -1,0 +1,34 @@
+[
+  {
+    "name": "consul-client",
+    "image": "consul:latest",
+    "cpu": 0,
+    "memory": 128,
+    "essential": true,
+    "environment": [
+      {
+        "name": "CONSUL_BIND_INTERFACE",
+        "value": "eth0"
+      }
+    ],
+    "command": [
+      "agent",
+      "-datacenter",
+      "${datacenter}",
+      "-client=0.0.0.0",
+      "-retry-join",
+      "provider=aws region=${aws_region} tag_key=${tag_key} tag_value=${tag_value}"
+    ],
+    "dockerLabels": {
+      "traefik.enabled": "true"
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${awslogs_group}",
+        "awslogs-region": "${awslogs_region}",
+        "awslogs-stream-prefix": "${awslogs_stream_prefix}"
+      }
+    }
+  }
+]
