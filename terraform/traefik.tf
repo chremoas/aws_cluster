@@ -47,28 +47,12 @@ resource "aws_route53_record" "traefik" {
   }
 }
 
-resource "aws_autoscaling_attachment" "traefik" {
-  autoscaling_group_name = module.ecs_arm_cluster.autoscaling_group_name
-  alb_target_group_arn = aws_alb_target_group.traefik-80.arn
-}
-
-//# Create a new target group
+# Create a new target group
 resource "aws_alb_target_group" "traefik-80" {
-  name = "traefik"
+  name = "traefik-80"
   port                 = 80
   protocol             = "TCP"
   vpc_id               = module.primary.vpc_id
-  //  deregistration_delay = var.lb_deregistration_delay
-
-  //  health_check {
-  //    path    = "/ping"
-  //    matcher = "200"
-  //  }
-  //
-  //  stickiness {
-  //    type    = "lb_cookie"
-  //    enabled = true
-  //  }
 
   tags = {
     Application = "arm_cluster"
@@ -77,7 +61,6 @@ resource "aws_alb_target_group" "traefik-80" {
   }
 }
 
-//
 # Create a new alb listener
 resource "aws_alb_listener" "traefik-80" {
   load_balancer_arn = aws_alb.arm_cluster.arn
@@ -86,6 +69,57 @@ resource "aws_alb_listener" "traefik-80" {
 
   default_action {
     target_group_arn = aws_alb_target_group.traefik-80.arn
+    type             = "forward"
+  }
+}
+
+resource "aws_alb_target_group" "traefik-8080" {
+  name = "traefik-8080"
+  port                 = 8080
+  protocol             = "TCP"
+  vpc_id               = module.primary.vpc_id
+
+  tags = {
+    Application = "arm_cluster"
+    Environment = "shared"
+    Terraform = "true"
+  }
+}
+
+# Create a new alb listener
+resource "aws_alb_listener" "traefik-8080" {
+  load_balancer_arn = aws_alb.arm_cluster.arn
+  port              = "8080"
+  protocol          = "TCP"
+
+  default_action {
+    target_group_arn = aws_alb_target_group.traefik-8080.arn
+    type             = "forward"
+  }
+}
+
+# Create a new target group
+resource "aws_alb_target_group" "traefik-443" {
+  name = "traefik-443"
+  port                 = 443
+  protocol             = "TCP"
+  vpc_id               = module.primary.vpc_id
+
+  tags = {
+    Application = "arm_cluster"
+    Environment = "shared"
+    Terraform = "true"
+  }
+}
+
+# Create a new alb listener
+resource "aws_alb_listener" "traefik-443" {
+  load_balancer_arn = aws_alb.arm_cluster.arn
+  port              = "443"
+  protocol          = "TCP"
+
+  default_action {
+    target_group_arn = aws_alb_target_group.traefik-443.arn
     type             = "forward"
   }
 }

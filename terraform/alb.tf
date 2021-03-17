@@ -27,10 +27,10 @@ resource "aws_alb" "arm_cluster" {
 //  }
 }
 
-resource "aws_autoscaling_attachment" "quassel" {
-  autoscaling_group_name = module.ecs_arm_cluster.autoscaling_group_name
-  alb_target_group_arn = aws_alb_target_group.quassel.arn
-}
+//resource "aws_autoscaling_attachment" "quassel" {
+//  autoscaling_group_name = module.ecs_arm_cluster.autoscaling_group_name
+//  alb_target_group_arn = aws_alb_target_group.quassel.arn
+//}
 
 # DNS Alias for the LB
 resource "aws_route53_record" "quassel" {

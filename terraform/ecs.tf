@@ -1,6 +1,8 @@
 module "ecs_arm_cluster" {
-  source = "infrablocks/ecs-cluster/aws"
-  version = "~> 3.1"
+//  source = "infrablocks/ecs-cluster/aws"
+//  version = "~> 3.1"
+//  source = "github.com/bhechinger/terraform-aws-ecs-cluster"
+  source = "../../../terraform-aws-ecs-cluster"
 
   region = var.aws_region
   vpc_id = module.primary.vpc_id
@@ -25,6 +27,13 @@ module "ecs_arm_cluster" {
   cluster_minimum_size = 2
   cluster_maximum_size = 4
   cluster_desired_capacity = 2
+
+  target_group_arns = [
+    aws_alb_target_group.quassel.arn,
+    aws_alb_target_group.traefik-80.arn,
+    aws_alb_target_group.traefik-443.arn,
+    aws_alb_target_group.traefik-8080.arn
+  ]
 }
 
 resource "aws_security_group" "cluster_public" {
@@ -46,6 +55,33 @@ resource "aws_security_group_rule" "quassel-ident" {
   protocol = "tcp"
   security_group_id = aws_security_group.cluster_public.id
   to_port = 113
+  type = "ingress"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "traefik-80" {
+  from_port = 80
+  protocol = "tcp"
+  security_group_id = aws_security_group.cluster_public.id
+  to_port = 80
+  type = "ingress"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "traefik-8080" {
+  from_port = 8080
+  protocol = "tcp"
+  security_group_id = aws_security_group.cluster_public.id
+  to_port = 8080
+  type = "ingress"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "traefik-443" {
+  from_port = 443
+  protocol = "tcp"
+  security_group_id = aws_security_group.cluster_public.id
+  to_port = 443
   type = "ingress"
   cidr_blocks = ["0.0.0.0/0"]
 }

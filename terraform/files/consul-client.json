@@ -20,7 +20,7 @@
       "provider=aws region=${aws_region} tag_key=${tag_key} tag_value=${tag_value}"
     ],
     "dockerLabels": {
-      "traefik.enabled": "true"
+      "traefik.enabled": "false"
     },
     "logConfiguration": {
       "logDriver": "awslogs",

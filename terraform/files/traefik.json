@@ -7,9 +7,14 @@
     "essential": true,
     "command": [
       "traefik",
-      "--api",
+      "--ping",
+      "--ping.entrypoint=http",
+      "--api=true",
+      "--api.dashboard=true",
       "--providers.ecs.clusters=${ecs_cluster}",
-      "--providers.ecs.region=${aws_region}"
+      "--providers.ecs.region=${aws_region}",
+      "--entryPoints.http.address=:80",
+      "--entryPoints.https.address=:443"
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
@@ -18,6 +23,16 @@
         "awslogs-region": "${awslogs_region}",
         "awslogs-stream-prefix": "${awslogs_stream_prefix}"
       }
+    },
+    "dockerLabels": {
+      "traefik.http.routers.dashboard.rule": "Host(`example.com`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))",
+      "traefik.http.routers.dashboard.service": "api@internal",
+      "traefik.frontend.rule": "Host:traefik.aws.4amlunch.net",
+      "traefik.enable": "true",
+      "traefik.http.services.dummyService.loadbalancer.server.port": "1337",
+      "traefik.http.routers.traefik_http.rule": "Host(`127.0.0.11`)",
+      "traefik.http.routers.traefik_http.service": "api@internal",
+      "traefik.http.routers.traefik_http.entrypoints": "http"
     }
   }
 ]
